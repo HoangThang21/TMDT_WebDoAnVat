@@ -4,7 +4,7 @@ import fs from 'fs';
 import mime from 'mime-types';
 import {mongooseConnect} from "@/lib/mongoose";
 import {isAdminRequest} from "@/pages/api/auth/[...nextauth]";
-const bucketName = 'nextjstest-lnt';
+const bucketName = 'nextjsbuckettest';
 
 export default async function handle(req,res) {
   await mongooseConnect();
@@ -19,7 +19,7 @@ export default async function handle(req,res) {
   });
   // console.log('length:', files.file.length);
   const client = new S3Client({
-    region: 'ap-southeast-2',
+    region: 'ap-southeast-1',
     credentials: {
       accessKeyId: process.env.S3_ACCESS_KEY,
       secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
@@ -36,7 +36,7 @@ export default async function handle(req,res) {
       ACL: 'public-read',
       ContentType: mime.lookup(file.path),
     }));
-    const link = `https://${bucketName}.s3.ap-southeast-2.amazonaws.com/${newFilename}`;
+    const link = `https://${bucketName}.s3.ap-southeast-1.amazonaws.com/${newFilename}`;
     links.push(link);
   }
   return res.json({links});
