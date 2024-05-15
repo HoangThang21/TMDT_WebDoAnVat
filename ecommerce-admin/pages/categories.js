@@ -99,7 +99,7 @@ function Categories({swal}) {
   }
   return (
     <Layout>
-      <h1>Categories</h1>
+      <h1>QUẢN LÍ DANH MỤC</h1>
       <label>
         {editedCategory
           ? `Edit category ${editedCategory.name}`
