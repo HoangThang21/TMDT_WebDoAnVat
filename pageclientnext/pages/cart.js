@@ -83,6 +83,7 @@ const ProductTitles = styled.div`
 
 export default function CartPage(){
     const {cartProducts,addProduct,removeProduct,clearCart} = useContext(CartContext);
+    const { data: session } = useSession();
     const [products, setProducts] = useState([]);
     const [name, setName] = useState('');
     const [email, setEmail]= useState('');
@@ -113,8 +114,22 @@ export default function CartPage(){
             setIsSuccess(true);
             clearCart();
         }
+       
     }, []);
-
+    useEffect(()=>{
+        if(!session){
+            return;
+        }
+        axios.get("/api/address").then((response) => {
+            setName(response.data.name);
+            setEmail(response.data.email);
+            setCity(response.data.city);
+            setPostalCode(response.data.postalCode);
+            setStreetAddress(response.data.streetAddress);
+            setCountry(response.data.country);
+            
+          });
+    },[session])
 
     function moreOfThisProduct(id){
         addProduct(id);
