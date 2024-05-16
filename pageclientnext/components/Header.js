@@ -131,7 +131,7 @@ export default function Header() {
             </Link>
             
             <NavLink href={"/account"}>
-              <UserIcon></UserIcon> {session && (session.user?.name)} {!session && (<>Well come</>)}
+              <UserIcon></UserIcon> {session && (session.user?.name)} {!session && (<>Hello</>)}
             </NavLink>
             <NavButton onClick={() => setMobileNavActive((prev) => !prev)}>
               <BarsIcon></BarsIcon>
