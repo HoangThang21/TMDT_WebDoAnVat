@@ -59,7 +59,7 @@ export default function AccountPage() {
     }
 
     axios.get("/api/address").then((response) => {
-      console.log(response)
+      console.log(session)
       if (response.data) {
         setName(response.data.name);
         setEmail(response.data.email);
