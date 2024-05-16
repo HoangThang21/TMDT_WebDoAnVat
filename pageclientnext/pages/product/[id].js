@@ -3,6 +3,7 @@ import { CartContext } from "@/components/CartContext";
 import Center from "@/components/Center";
 import Header from "@/components/Header";
 import ProductImages from "@/components/ProductImages";
+import ProductReview from "@/components/ProductReview";
 import Title from "@/components/Title";
 import WhiteBox from "@/components/WhiteBox";
 import CartIcon from "@/components/icons/CartIcon";
@@ -57,6 +58,9 @@ export default function ProductPage({product}){
                         <Decoration>{product.description}</Decoration>     
                     </div>
                 </ColWrapper>
+                <ProductReview product={product}>
+
+                </ProductReview>
                
             </Center>
         </>
