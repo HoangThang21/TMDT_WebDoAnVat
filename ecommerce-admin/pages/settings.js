@@ -40,20 +40,15 @@ function SettingsPage({ swal }) {
     await axios.put("/api/settings", {
       name: "featuredProductId",
       value: featuredProductId
-    }).then(()=>{
-      swal.fire({
-        title:'Đã lưu cài đặt',
-        icon: 'success'
-      })
     });
     await axios.put("/api/settings", {
       name: "shippingFee",
       value: shippingFee
     });
     setIsLoading(false);
-    await swal.fire({
-      title: "Settings saved!",
-      icon: "success"
+    swal.fire({
+      title:'Đã lưu cài đặt',
+      icon: 'success'
     });
   }
 

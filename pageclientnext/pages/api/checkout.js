@@ -1,6 +1,7 @@
 import { mongooseConnection } from "@/lib/mongoose";
 import { Order } from "@/models/Order";
 import { Product } from "@/models/Product";
+import { Setting } from "@/models/Setting";
 const stripe = require('stripe')(process.env.STRIPE_SK);
 
 export default async function handle(req, res){
@@ -17,6 +18,7 @@ export default async function handle(req, res){
         country,
         cartProducts,
     } = req.body;
+    console.log(req.body);
     await mongooseConnection();
     const productsIds = cartProducts;
     const uniqueIds = [...new Set(productsIds)];
@@ -30,10 +32,10 @@ export default async function handle(req, res){
             line_items.push({
                 quantity,
                 price_data: {
-                    currency: 'VND',
+                    currency: 'USD',
                     product_data: {name: productInfo.title},
                     // product_data: {importance: productInfo.images},
-                    unit_amount: quantity * productInfo.price ,
+                    unit_amount: parseInt(quantity * productInfo.price)*100 ,
                 },
             });
         }
@@ -42,14 +44,25 @@ export default async function handle(req, res){
     const orderDoc = await Order.create({
         line_items,name,email,city,postalCode,streetAddress,country,paid:false,
     });
-
+    const shippingFeeSetting = await Setting.findOne({name:'shippingFee'}); 
+    const feeship =  parseInt(shippingFeeSetting.value||'0')*100;
     const session = await stripe.checkout.sessions.create({
         line_items,
         mode: 'payment',
         customer_email: email,
         success_url: process.env.PUBLIC_URL + '/cart?success=1',
         cancel_url: process.env.PUBLIC_URL + '/cart?canceled=1',
-        metadata: {orderId:orderDoc._id.toString(),test:'ok'},
+        metadata: {orderId:orderDoc._id.toString()},
+        shipping_options:[
+            {
+                shipping_rate_data:{
+                    display_name:'shipping fee',
+                    type:'fixed_amount',
+                    fixed_amount:{amount:feeship,currency:'USD'}
+                }
+            }
+        ]
+
     });
     res.json({
        url: session.url
