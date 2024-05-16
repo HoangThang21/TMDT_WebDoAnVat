@@ -111,10 +111,12 @@ export async function getServerSideProps(ctx) {
   }
 
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
-  const wishedProduct = session?.user? await WishedProduct.find({
-    userEmail: session.user.email,
-    product: allFetchedProductsId,
-  }):[];
+  const wishedProduct = session?.user
+    ? await WishedProduct.find({
+        userEmail: session.user.email,
+        product: allFetchedProductsId
+      })
+    : [];
 
   // const session = await getServerSession(ctx.req, ctx.res, authOptions);
   // const wishedProducts = session?.user
@@ -128,7 +130,7 @@ export async function getServerSideProps(ctx) {
     props: {
       mainCategories: JSON.parse(JSON.stringify(mainCategories)),
       categoriesProducts: JSON.parse(JSON.stringify(categoriesProducts)),
-      wishedProduct: wishedProduct.map( i => i.product.toString()),
+      wishedProduct: wishedProduct.map((i) => i.product.toString())
     }
   };
 }

@@ -59,7 +59,7 @@ export default function AccountPage() {
     }
 
     axios.get("/api/address").then((response) => {
-      console.log(session)
+      console.log(session);
       if (response.data) {
         setName(response.data.name);
         setEmail(response.data.email);
@@ -67,14 +67,12 @@ export default function AccountPage() {
         setPostalCode(response.data.postalCode);
         setStreetAddress(response.data.streetAddress);
         setCountry(response.data.country);
-
       }
       setAddressLoaded(true);
     });
     axios.get("/api/wishlist").then((response) => {
       if (response.data) {
         setWishedProduct(response.data.map((wp) => wp.product));
-     
       }
       setwishlistLoaded(true);
     });

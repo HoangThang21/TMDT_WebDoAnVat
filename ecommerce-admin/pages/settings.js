@@ -47,8 +47,8 @@ function SettingsPage({ swal }) {
     });
     setIsLoading(false);
     swal.fire({
-      title:'Đã lưu cài đặt',
-      icon: 'success'
+      title: "Đã lưu cài đặt",
+      icon: "success"
     });
   }
 
