@@ -7,8 +7,7 @@ import BarsIcon from "./icons/Bars";
 import SearchIcon from "./icons/SearchIcon";
 import ShopIcon from "./icons/ShopIcon";
 import UserIcon from "./icons/UserIcon";
-import { signIn, useSession } from "next-auth/react";
-import Button from "./Button";
+import { useSession } from "next-auth/react";
 
 const StyledHeader = styled.header`
   background-color: #222;
@@ -106,10 +105,6 @@ const ShopNavNumber = styled.div`
 `;
 
 export default function Header() {
-
-  async function login() {
-    await signIn("google");
-  }
   const { cartProducts } = useContext(CartContext);
   const { data: session } = useSession();
   const [mobileNavActive, setMobileNavActive] = useState(false);
@@ -135,13 +130,7 @@ export default function Header() {
               <SearchIcon></SearchIcon>
             </Link>
             <NavLink href={"/account"}>
-              <UserIcon></UserIcon> {session && session.user?.name}{" "}
-              {!session && (
-                  <Button primary onClick={login}>
-                    {" "}
-                    Đăng nhập
-                  </Button>
-                )}
+              <UserIcon></UserIcon> {session && (session.user?.name)} {!session && (<>Well come</>)}
             </NavLink>
             <NavButton onClick={() => setMobileNavActive((prev) => !prev)}>
               <BarsIcon></BarsIcon>
