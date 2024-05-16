@@ -59,17 +59,23 @@ export default function AccountPage() {
     }
 
     axios.get("/api/address").then((response) => {
-      setName(response.data.name);
-      setEmail(response.data.email);
-      setCity(response.data.city);
-      setPostalCode(response.data.postalCode);
-      setStreetAddress(response.data.streetAddress);
-      setCountry(response.data.country);
+      console.log(response)
+      if (response.data) {
+        setName(response.data.name);
+        setEmail(response.data.email);
+        setCity(response.data.city);
+        setPostalCode(response.data.postalCode);
+        setStreetAddress(response.data.streetAddress);
+        setCountry(response.data.country);
+
+      }
       setAddressLoaded(true);
     });
     axios.get("/api/wishlist").then((response) => {
-      console.log(response);
-      setWishedProduct(response.data.map((wp) => wp.product));
+      if (response.data) {
+        setWishedProduct(response.data.map((wp) => wp.product));
+     
+      }
       setwishlistLoaded(true);
     });
   }, [session]);
