@@ -32,7 +32,8 @@ export default async function handle(req, res){
                 price_data: {
                     currency: 'VND',
                     product_data: {name: productInfo.title},
-                    unit_amount: quantity * productInfo.price *100,
+                    // product_data: {importance: productInfo.images},
+                    unit_amount: quantity * productInfo.price ,
                 },
             });
         }
