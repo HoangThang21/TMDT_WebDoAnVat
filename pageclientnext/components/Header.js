@@ -129,6 +129,7 @@ export default function Header() {
             <Link href={"/search"}>
               <SearchIcon></SearchIcon>
             </Link>
+            
             <NavLink href={"/account"}>
               <UserIcon></UserIcon> {session && (session.user?.name)} {!session && (<>Well come</>)}
             </NavLink>
