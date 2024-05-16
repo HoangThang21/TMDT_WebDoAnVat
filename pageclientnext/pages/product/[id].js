@@ -31,6 +31,10 @@ const PriceRow = styled.div`
 const Price = styled.span`
     font-size: 1.4rem;
 `;
+const Decoration= styled.span`
+    font-weight: 300;
+    color: #000000;
+`
 
 export default function ProductPage({product}){
     const {addProduct} = useContext(CartContext);
@@ -48,7 +52,9 @@ export default function ProductPage({product}){
                         <PriceRow>
                             <div><Price>${product.price}</Price></div>
                             <div><Button primary onClick={() => addProduct(product._id)}><CartIcon></CartIcon> Add to cart</Button></div>
-                        </PriceRow>      
+                        </PriceRow> 
+                        <p>Mô tả</p>
+                        <Decoration>{product.description}</Decoration>     
                     </div>
                 </ColWrapper>
                
