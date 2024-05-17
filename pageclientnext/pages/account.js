@@ -11,6 +11,7 @@ import { RevealWrapper } from "next-reveal";
 import axios from "axios";
 import Spinner from "@/components/Spinner";
 import ProductBox from "@/components/ProductBox";
+import Footer from "@/components/Footer";
 
 const ColsWrapper = styled.div`
   display: grid;
@@ -208,6 +209,7 @@ export default function AccountPage() {
           </div>
         </ColsWrapper>
       </Center>
+      <Footer></Footer>
     </>
   );
 }

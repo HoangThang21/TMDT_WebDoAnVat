@@ -10,6 +10,7 @@ import { mongooseConnection } from "@/lib/mongoose";
 import { getServerSession } from "next-auth";
 import { WishedProduct } from "@/models/WishedProduct";
 import { authOptions } from "./api/auth/[...nextauth]";
+import Footer from "@/components/Footer";
 // import {getServerSession} from "next-auth";
 // import {authOptions} from "@/pages/api/auth/[...nextauth]";
 // import {WishedProduct} from "@/models/WishedProduct";
@@ -85,6 +86,7 @@ export default function CategoriesPage({
           </CategoryWrapper>
         ))}
       </Center>
+      <Footer></Footer>
     </>
   );
 }

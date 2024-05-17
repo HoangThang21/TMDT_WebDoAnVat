@@ -8,6 +8,7 @@ import { styled } from "styled-components";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { WishedProduct } from "@/models/WishedProduct";
 import { getServerSession } from "next-auth";
+import Footer from "@/components/Footer";
 
 
 export default function ProductsPage({products,wishedProduct}){
@@ -18,7 +19,7 @@ export default function ProductsPage({products,wishedProduct}){
                 <Title>All products</Title>
                 <ProductsGrid products={products} wishedProduct={wishedProduct}></ProductsGrid>
             </Center>
-            
+            <Footer></Footer>
         </>
     );
 }
