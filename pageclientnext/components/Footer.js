@@ -45,11 +45,13 @@ const NavLink = styled(Link)`
   text-decoration: none;
   min-width: 30px;
   padding: 10px 0;
+  
   img {
-    width: 200px;
-    height: 64px;
+    width: 200px !important;
+    height: 64px !important;
     object-fit: fill;
   }
+ 
   p {
     font-size: 12px;
   }
@@ -66,6 +68,24 @@ const NavDiv = styled.div`
   p {
     font-size: 12px;
   }
+  div > img{
+    width: 68px;
+    height: 68px;
+    object-fit: fill;
+  }
+  div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  div >  span{
+    margin-left: 20px;
+
+    color: #fff;
+    font-weight: bold;
+    font-size: 32px;
+  }
+
   @media screen and (min-width: 768px) {
     padding: 0;
   }
@@ -78,6 +98,7 @@ export default function Footer() {
           <Wrapper>
             <StyleNav>
               <NavDiv>
+                <div><img src="/iconlogoweb.png" alt="" /> <span>TECHFOOD</span></div>
                 <p>Copyright © 2024 TechFood</p>
                 <p>
                   Địa chỉ: 1209/61, Bình Đức 1, Phường Bình Đức, TP.Long Xuyên,
@@ -95,6 +116,17 @@ export default function Footer() {
                 <p>Zalo: 0355.378.007 - ZaloPage: Công ty TechFood</p>
               </NavDiv>
               <NavDiv>
+                <div>
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d178.83998677060774!2d105.41841167660262!3d10.400890336532045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTDCsDI0JzAzLjMiTiAxMDXCsDI1JzA2LjciRQ!5e1!3m2!1svi!2s!4v1715924779419!5m2!1svi!2s"
+                    width="400"
+                    height="300"
+          
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
                 <NavLink href={"#"}>
                   {" "}
                   <div>
