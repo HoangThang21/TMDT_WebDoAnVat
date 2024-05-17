@@ -8,21 +8,25 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { Setting } from "@/models/Setting";
 import Footer from "@/components/Footer";
+import { useTranslation } from 'react-i18next';
+import '@/i18n/i18n.js';
 
 export default function HomePage({
   featuredProduct,
   newProducts,
   wishedNewProduct
 }) {
+  const {t}= useTranslation();
   return (
     <div>
-      <Header></Header>
+      
+      <Header t={t}></Header>
       <Featured product={featuredProduct}></Featured>
       <NewProduct
         products={newProducts}
         wishedProduct={wishedNewProduct}
       ></NewProduct>
-      <Footer></Footer>
+      <Footer t={t}></Footer>
     </div>
   );
 }

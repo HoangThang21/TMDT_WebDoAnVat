@@ -12,7 +12,8 @@ import axios from "axios";
 import Spinner from "@/components/Spinner";
 import ProductBox from "@/components/ProductBox";
 import Footer from "@/components/Footer";
-
+import { useTranslation } from 'react-i18next';
+import '@/i18n/i18n.js';
 const ColsWrapper = styled.div`
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -53,6 +54,7 @@ export default function AccountPage() {
   const [wishlistLoaded, setwishlistLoaded] = useState(false);
   const [WishedProduct, setWishedProduct] = useState([]);
   const [OrderProduct, setOrderProduct] = useState([]);
+  const {t}= useTranslation();
   async function logout() {
     await signOut({
       callbackUrl: process.env.NEXT_PUBLIC_URL
@@ -102,7 +104,7 @@ export default function AccountPage() {
   }
   return (
     <>
-      <Header></Header>
+       <Header t={t}/>
       <Center>
         <ColsWrapper>
           <div>
@@ -294,7 +296,7 @@ export default function AccountPage() {
           </div>
         </ColsWrapperOrder>
       </Center>
-      <Footer></Footer>
+      <Footer t={t}></Footer>
     </>
   );
 }

@@ -14,7 +14,8 @@ import Footer from "@/components/Footer";
 // import {getServerSession} from "next-auth";
 // import {authOptions} from "@/pages/api/auth/[...nextauth]";
 // import {WishedProduct} from "@/models/WishedProduct";
-
+import { useTranslation } from 'react-i18next';
+import '@/i18n/i18n.js';
 const CategoryGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -59,9 +60,11 @@ export default function CategoriesPage({
   categoriesProducts,
   wishedProduct = []
 }) {
+  const {t}= useTranslation();
   return (
     <>
-      <Header />
+    
+      <Header t={t}/>
       <Center>
         {mainCategories.map((cat) => (
           <CategoryWrapper>
@@ -86,7 +89,7 @@ export default function CategoriesPage({
           </CategoryWrapper>
         ))}
       </Center>
-      <Footer></Footer>
+      <Footer t={t}></Footer>
     </>
   );
 }

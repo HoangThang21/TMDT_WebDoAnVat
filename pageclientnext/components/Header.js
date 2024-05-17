@@ -8,7 +8,8 @@ import SearchIcon from "./icons/SearchIcon";
 import ShopIcon from "./icons/ShopIcon";
 import UserIcon from "./icons/UserIcon";
 import { useSession } from "next-auth/react";
-
+import { useTranslation } from "react-i18next";
+import "@/i18n/i18n.js";
 const StyledHeader = styled.header`
   background-color: #222;
 `;
@@ -79,6 +80,39 @@ const NavButton = styled.button`
     display: none;
   }
 `;
+const NavDropDown = styled.button`
+  background-color: transparent;
+  border: 0;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  z-index: 4;
+  p {
+    margin: 0;
+  }
+  /* @media screen and (min-width: 768px) {
+    display: none;
+  } */
+`;
+const NavDiv = styled.div`
+  background-color: #fff;
+  border: 0;
+  color: #000;
+  cursor: pointer;
+  position: absolute;
+  top: 50px;
+  right: 200px;
+  padding: 0 10px;
+  border-radius: 10px;
+  z-index: 4;
+  p{
+    padding: 10px;
+    border-radius: 5px;
+  }
+  p:hover{
+    background-color: #ccc;
+  }
+`;
 const SideIcons = styled.div`
   display: flex;
   align-items: center;
@@ -104,19 +138,30 @@ const ShopNavNumber = styled.div`
   font-size: 18px;
 `;
 
-export default function Header() {
+export default function Header({ t }) {
   const { cartProducts } = useContext(CartContext);
   const { data: session } = useSession();
   const [mobileNavActive, setMobileNavActive] = useState(false);
+  const [navActiveDrop, setNavActiveDrop] = useState(false);
+  const { i18n } = useTranslation();
+  function handleLang(ln) {
+    i18n.changeLanguage(ln);
+    setNavActiveDrop(false);
+  }
+  function handleDrop(){
+    setMobileNavActive((prev) => !prev);
+    setNavActiveDrop((prev) => !prev);
+    
+  }
   return (
     <StyledHeader>
       <Center>
         <Wrapper>
           <Logo href={"/"}>TechFood</Logo>
           <StyleNav mobileNavActive={mobileNavActive}>
-            <NavLink href={"/"}>Trang chủ</NavLink>
-            <NavLink href={"/products"}>Sản phẩm</NavLink>
-            <NavLink href={"/categories"}>Danh mục</NavLink>
+            <NavLink href={"/"}>{t("Home")}</NavLink>
+            <NavLink href={"/products"}>{t("Product")}</NavLink>
+            <NavLink href={"/categories"}>{t("Category")}</NavLink>
             <NavLink href={"/cart"} title="Giỏ hàng">
               <ShopNavIcon>
                 <ShopIcon></ShopIcon>
@@ -136,6 +181,17 @@ export default function Header() {
             <NavButton onClick={() => setMobileNavActive((prev) => !prev)}>
               <BarsIcon></BarsIcon>
             </NavButton>
+
+            <NavDropDown onClick={() => handleDrop()}>
+              <p>{t("Select language") == "Select language" && "English"}</p>
+              <p>{t("Select language") != "Select language" && "Tiếng việt"}</p>
+            </NavDropDown>
+            {navActiveDrop && (
+              <NavDiv>
+                <p onClick={() => handleLang("en")}>English</p>
+                <p onClick={() => handleLang("vi")}>Tiếng việt</p>
+              </NavDiv>
+            )}
           </SideIcons>
         </Wrapper>
       </Center>

@@ -8,7 +8,8 @@ import axios from "axios";
 import { debounce, flatMap } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-
+import { useTranslation } from 'react-i18next';
+import '@/i18n/i18n.js';
 const SearchInput = styled(Input)`
     padding: 5px 10px;
     border-radius: 5px;
@@ -47,9 +48,10 @@ export default function SearchPage(){
                 }
             );
     }
+    const {t}= useTranslation();
     return(
         <>
-            <Header></Header>
+           <Header t={t}/>
 
             <Center>
                 <InputWrapper>
@@ -71,7 +73,7 @@ export default function SearchPage(){
                 <ProductsGrid products={products}></ProductsGrid>
             )}
             </Center>
-            <Footer></Footer>
+            <Footer t={t}></Footer>
         </>
     );
 }

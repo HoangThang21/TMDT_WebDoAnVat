@@ -10,7 +10,7 @@ import { useSession } from "next-auth/react";
 
 import { useContext, useEffect, useState } from "react";
 import { styled } from "styled-components";
-
+const {t}= useTranslation();
 const ColumnsWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
@@ -108,7 +108,7 @@ export default function CartPage() {
   const [country, setCountry] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [shippingFee, setShipppingFee] = useState(null);
-
+  const {t}= useTranslation();
   useEffect(() => {
     if (cartProducts.length > 0) {
       axios.post("/api/cart", { ids: cartProducts }).then((response) => {
@@ -180,7 +180,7 @@ export default function CartPage() {
   if (isSuccess) {
     return (
       <>
-        <Header />
+         <Header t={t}/>
         <Center>
           <ColumnsWrapper>
             <Box>
@@ -189,13 +189,13 @@ export default function CartPage() {
             </Box>
           </ColumnsWrapper>
         </Center>
-        <Footer></Footer>
+        <Footer t={t}></Footer>
       </>
     );
   }
   return (
     <>
-      <Header></Header>
+       <Header t={t}/>
       <Center>
         <ColumnsWrapper>
           <Box>
@@ -313,7 +313,7 @@ export default function CartPage() {
           )}
         </ColumnsWrapper>
       </Center>
-      <Footer></Footer>
+      <Footer t={t}></Footer>
     </>
   );
 }

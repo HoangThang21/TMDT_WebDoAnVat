@@ -45,13 +45,13 @@ const NavLink = styled(Link)`
   text-decoration: none;
   min-width: 30px;
   padding: 10px 0;
-  
+
   img {
     width: 200px !important;
     height: 64px !important;
     object-fit: fill;
   }
- 
+
   p {
     font-size: 12px;
   }
@@ -68,17 +68,17 @@ const NavDiv = styled.div`
   p {
     font-size: 12px;
   }
-  div > img{
+  div > img {
     width: 68px;
     height: 68px;
     object-fit: fill;
   }
-  div{
+  div {
     display: flex;
     align-items: center;
     margin-bottom: 30px;
   }
-  div >  span{
+  div > span {
     margin-left: 20px;
 
     color: #fff;
@@ -90,7 +90,7 @@ const NavDiv = styled.div`
     padding: 0;
   }
 `;
-export default function Footer() {
+export default function Footer({ t }) {
   return (
     <>
       <StyledFooter>
@@ -98,22 +98,24 @@ export default function Footer() {
           <Wrapper>
             <StyleNav>
               <NavDiv>
-                <div><img src="/iconlogoweb.png" alt="" /> <span>TECHFOOD</span></div>
+                <div>
+                  <img src="/iconlogoweb.png" alt="" /> <span>TECHFOOD</span>
+                </div>
                 <p>Copyright © 2024 TechFood</p>
                 <p>
-                  Địa chỉ: 1209/61, Bình Đức 1, Phường Bình Đức, TP.Long Xuyên,
-                  Tỉnh An Giang
+                  {t("Address")}: 1209/61, Bình Đức 1, Phường Bình Đức, TP.Long
+                  Xuyên, Tỉnh An Giang
                 </p>
-                <p>Người đại điện theo pháp luật: Nguyễn Hoàng Thắng</p>
+                <p>{t("Legal representative")}: Nguyễn Hoàng Thắng</p>
                 <p>
-                  Mã số thuế: 1601223524, ngày cấp lần đầu: 17/05/2024, cấp lần
-                  cuối: 17/05/2024
+                  {t("Tax code")}: 1601223524, {t("Date of first issue")}:
+                  17/05/2024, {t("Last issued")}: 17/05/2024
                 </p>
                 <p>
-                  Điện thoại: 0364.411.871 - Email:
+                  {t("Phone")}: 0364.411.871 - Email:
                   nthang_21th@student.agu.edu.vn
                 </p>
-                <p>Zalo: 0355.378.007 - ZaloPage: Công ty TechFood</p>
+                <p>Zalo: 0355.378.007 - ZaloPage: {t("Company")} TechFood</p>
               </NavDiv>
               <NavDiv>
                 <div>
@@ -121,7 +123,6 @@ export default function Footer() {
                     src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d178.83998677060774!2d105.41841167660262!3d10.400890336532045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTDCsDI0JzAzLjMiTiAxMDXCsDI1JzA2LjciRQ!5e1!3m2!1svi!2s!4v1715924779419!5m2!1svi!2s"
                     width="400"
                     height="300"
-          
                     allowfullscreen=""
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"

@@ -9,17 +9,19 @@ import { authOptions } from "./api/auth/[...nextauth]";
 import { WishedProduct } from "@/models/WishedProduct";
 import { getServerSession } from "next-auth";
 import Footer from "@/components/Footer";
-
+import { useTranslation } from 'react-i18next';
+import '@/i18n/i18n.js';
 
 export default function ProductsPage({products,wishedProduct}){
+    const {t}= useTranslation();
     return (
         <>
-            <Header></Header>
+       <Header t={t}/>
             <Center>
                 <Title>Tất cả sản phẩm</Title>
                 <ProductsGrid products={products} wishedProduct={wishedProduct}></ProductsGrid>
             </Center>
-            <Footer></Footer>
+            <Footer t={t}></Footer>
         </>
     );
 }
