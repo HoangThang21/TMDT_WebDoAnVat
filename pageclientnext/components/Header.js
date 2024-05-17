@@ -119,12 +119,15 @@ export default function Header() {
             <NavLink href={"/categories"}>Danh mục</NavLink>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             <NavLink href={"/account"}>
               <UserIcon></UserIcon> {session && (session.user?.name)} {!session && (<>Well come</>)}
             </NavLink>
             <NavButton onClick={() => setMobileNavActive((prev) => !prev)}>
               <BarsIcon></BarsIcon>
             </NavButton>
+=======
+>>>>>>> parent of 2b71667 (....)
 =======
 >>>>>>> parent of 2b71667 (....)
             <NavLink href={"/cart"} title="Giỏ hàng">

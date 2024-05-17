@@ -53,6 +53,7 @@ function SettingsPage({ swal }) {
     setIsLoading(false);
     swal.fire({
 <<<<<<< HEAD
+<<<<<<< HEAD
       title:'Đã lưu cài đặt',
       icon: 'success'
     });
@@ -62,6 +63,10 @@ function SettingsPage({ swal }) {
 =======
       title: "Đã lưu cài đặt",
       icon: "success"
+=======
+      title:'Đã lưu cài đặt',
+      icon: 'success'
+>>>>>>> parent of 2b71667 (....)
     });
   }
 
