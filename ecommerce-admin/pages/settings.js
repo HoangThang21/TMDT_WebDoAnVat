@@ -34,11 +34,6 @@ function SettingsPage({ swal }) {
       }
     });
   }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 0151e38 (Update settings.js)
 
   async function saveSettings() {
     setIsLoading(true);
@@ -52,25 +47,11 @@ function SettingsPage({ swal }) {
     });
     setIsLoading(false);
     swal.fire({
-<<<<<<< HEAD
-<<<<<<< HEAD
-      title:'Đã lưu cài đặt',
-      icon: 'success'
-    });
-  }
-
->>>>>>> parent of 2b71667 (....)
-=======
       title: "Đã lưu cài đặt",
       icon: "success"
-=======
-      title:'Đã lưu cài đặt',
-      icon: 'success'
->>>>>>> parent of 2b71667 (....)
     });
   }
 
->>>>>>> parent of 0151e38 (Update settings.js)
   return (
     <Layout>
       <h1>Settings</h1>
