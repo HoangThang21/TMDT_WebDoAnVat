@@ -47,10 +47,10 @@ const ColumnsWrapper = styled.div`
   }
   @media screen and (min-width: 768px) {
     grid-template-columns: 1.1fr 0.9fr;
-    & > div:nth-child(1) {
+    &>div:nth-child(1) {
       order: 0;
     }
-
+   
     img {
       max-width: 100%;
     }
@@ -78,7 +78,9 @@ const ImgColumn = styled(Column)`
     width: 100%;
   }
 `;
-const ContentWrapper = styled.div``;
+const ContentWrapper = styled.div`
+  
+`;
 
 export default function Featured({ product }) {
   const { addProduct } = useContext(CartContext);

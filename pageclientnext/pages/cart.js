@@ -21,16 +21,17 @@ const ColumnsWrapper = styled.div`
   margin-bottom: 40px;
   table thead tr th:nth-child(3),
   table tbody tr td:nth-child(3),
-  table tbody tr.subtotal td:nth-child(2) {
+  table tbody tr.subtotal td:nth-child(2)
+  {
     text-align: right;
   }
-  table tr.subtotal td {
+  table tr.subtotal td{
     padding: 15px 0;
   }
-  table tbody tr.subtotal td:nth-child(2) {
+  table tbody tr.subtotal td:nth-child(2){
     font-size: 1.4rem;
   }
-  tr.total td {
+  tr.total td{
     font-weight: bold;
   }
 `;
@@ -154,6 +155,7 @@ export default function CartPage() {
     removeProduct(id);
   }
   async function goToPayment() {
+    
     const response = await axios.post("/api/checkout", {
       name,
       email,
@@ -247,7 +249,7 @@ export default function CartPage() {
                   </tr>
                   <tr className="subtotal total">
                     <td colSpan={2}>Tổng</td>
-                    <td>${productsTotal + parseInt(shippingFee || 0)}</td>
+                    <td>${productsTotal+parseInt( shippingFee||0)}</td>
                   </tr>
                 </tbody>
               </Table>

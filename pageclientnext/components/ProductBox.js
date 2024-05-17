@@ -87,7 +87,7 @@ export default function ProductBox({
   price,
   images,
   wished = false,
-  onRemoveFromWishlist = () => {}
+  onRemoveFromWishlist=()=>{},
 }) {
   const { addProduct } = useContext(CartContext);
   const [iswished, setIswhished] = useState(wished);
@@ -96,12 +96,11 @@ export default function ProductBox({
     ev.preventDefault();
     ev.stopPropagation();
     const nextValue = !iswished;
-    if (nextValue === false && onRemoveFromWishlist) {
+    if(nextValue===false && onRemoveFromWishlist){ 
       onRemoveFromWishlist(_id);
     }
-    axios
-      .post("api/wishlist", {
-        product: _id
+    axios.post("api/wishlist", {
+        product: _id,
       })
       .then(() => {});
     setIswhished(nextValue);

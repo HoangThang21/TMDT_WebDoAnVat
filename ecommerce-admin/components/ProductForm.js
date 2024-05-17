@@ -26,11 +26,11 @@ export default function ProductForm({
   const [categories, setCategories] = useState([]);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
   const router = useRouter();
-  useEffect(() => {
-    if (price < 0) {
-      setPrice(0);
+  useEffect(()=>{
+    if(price<0){
+      setPrice(0)
     }
-  }, [price]);
+  },[price])
   useEffect(() => {
     setCategoriesLoading(true);
     axios.get("/api/categories").then((result) => {

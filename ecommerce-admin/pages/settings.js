@@ -36,6 +36,27 @@ import { withSwal } from "react-sweetalert2";
       });
     });
   }
+<<<<<<< HEAD
+=======
+
+  async function saveSettings() {
+    setIsLoading(true);
+    await axios.put("/api/settings", {
+      name: "featuredProductId",
+      value: featuredProductId
+    });
+    await axios.put("/api/settings", {
+      name: "shippingFee",
+      value: shippingFee
+    });
+    setIsLoading(false);
+    swal.fire({
+      title:'Đã lưu cài đặt',
+      icon: 'success'
+    });
+  }
+
+>>>>>>> parent of 2b71667 (....)
   return (
     <Layout>
       <h1>Settings</h1>

@@ -20,7 +20,7 @@ const ColsWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px){
     grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
@@ -29,15 +29,15 @@ const ReviewWrapper = styled.div`
   margin-bottom: 10px;
   border-top: 1px solid #ddd;
   padding: 10px 0;
-  h3 {
+  h3{
     margin: 3px 0;
-    font-size: 1rem;
+    font-size:1rem ;
     color: #333;
     font-weight: normal;
   }
-  p {
+  p{
     margin: 0;
-    font-size: 0.8rem;
+    font-size: .8rem;
     line-height: 1rem;
     color: #555;
   }
@@ -49,6 +49,7 @@ const ReviewHeader = styled.div`
     font-size: 12px;
     color: #aaa;
   }
+ 
 `;
 
 export default function ProductReview({ product }) {
@@ -70,7 +71,7 @@ export default function ProductReview({ product }) {
   useEffect(() => {
     loadReview();
   }, []);
-  function loadReview() {
+  function loadReview(){
     setReviewLoading(true);
     axios.get("/api/review?product=" + product._id).then((res) => {
       setReview(res.data);
@@ -117,7 +118,9 @@ export default function ProductReview({ product }) {
                     disabled={true}
                     defaultHowmany={re.stars}
                   ></StartRating>
-                  <time>{re.createdAt}</time>
+                  <time>
+                    {new Date(re.createdAt).toLocaleTimeString("sv-SE")}
+                  </time>
                 </ReviewHeader>
                 <div>
                   <h3>{re.title}</h3>

@@ -4,9 +4,10 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./auth/[...nextauth]";
 import { Address } from "@/models/Address";
 
+
 export default async function handle(req, res) {
   await mongooseConnection();
-  if (req.method === "PUT") {
+  if(req.method ==='PUT'){
     const { user } = await getServerSession(req, res, authOptions);
     const address = await Address.findOne({ userEmail: user.email });
     if (address) {
@@ -20,9 +21,10 @@ export default async function handle(req, res) {
       );
     }
   }
-  if (req.method === "GET") {
+  if(req.method ==='GET'){
     const { user } = await getServerSession(req, res, authOptions);
     const address = await Address.findOne({ userEmail: user.email });
     res.json(address);
   }
+  
 }

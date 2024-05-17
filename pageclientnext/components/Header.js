@@ -81,10 +81,7 @@ const NavButton = styled.button`
 `;
 const SideIcons = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
-
-  gap: 10px;
   a {
     display: inline-block;
     min-width: 20px;
@@ -101,7 +98,7 @@ const ShopNavIcon = styled.div`
 const ShopNavNumber = styled.div`
   position: absolute;
   top: 0;
-  right: -20px;
+  right: -10px;
   width: 20px;
   height: 20px;
   font-size: 18px;
@@ -120,24 +117,34 @@ export default function Header() {
             <NavLink href={"/"}>Trang chủ</NavLink>
             <NavLink href={"/products"}>Sản phẩm</NavLink>
             <NavLink href={"/categories"}>Danh mục</NavLink>
-          </StyleNav>
-          <SideIcons>
-            <Link href={"/search"}>
-              <SearchIcon></SearchIcon>
-            </Link>
 
+<<<<<<< HEAD
             <NavLink href={"/account"}>
               <UserIcon></UserIcon> {session && (session.user?.name)} {!session && (<>Well come</>)}
             </NavLink>
             <NavButton onClick={() => setMobileNavActive((prev) => !prev)}>
               <BarsIcon></BarsIcon>
             </NavButton>
+=======
+>>>>>>> parent of 2b71667 (....)
             <NavLink href={"/cart"} title="Giỏ hàng">
               <ShopNavIcon>
                 <ShopIcon></ShopIcon>
                 <ShopNavNumber>({cartProducts.length})</ShopNavNumber>
               </ShopNavIcon>
             </NavLink>
+          </StyleNav>
+          <SideIcons>
+            <Link href={"/search"}>
+              <SearchIcon></SearchIcon>
+            </Link>
+            
+            <NavLink href={"/account"}>
+              <UserIcon></UserIcon> {session && (session.user?.name)} {!session && (<>Well come</>)}
+            </NavLink>
+            <NavButton onClick={() => setMobileNavActive((prev) => !prev)}>
+              <BarsIcon></BarsIcon>
+            </NavButton>
           </SideIcons>
         </Wrapper>
       </Center>
