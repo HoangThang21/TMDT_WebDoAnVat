@@ -52,7 +52,7 @@ export default function ProductPage({product}){
                         <p>{product.description}</p>
                         <PriceRow>
                             <div><Price>${product.price}</Price></div>
-                            <div><Button primary onClick={() => addProduct(product._id)}><CartIcon></CartIcon> Add to cart</Button></div>
+                            <div><Button primary onClick={() => addProduct(product._id)}><CartIcon></CartIcon> Thêm vào giỏ</Button></div>
                         </PriceRow> 
                         <p>Mô tả</p>
                         <Decoration>{product.description}</Decoration>     

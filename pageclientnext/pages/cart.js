@@ -266,14 +266,14 @@ export default function CartPage() {
                 placeholder="Name"
                 value={name}
                 name="name"
-                onChange={(ev) => setName(ev.target.value)}
+                disable
               ></Input>
               <Input
                 type="text"
                 placeholder="Email"
                 value={email}
                 name="email"
-                onChange={(ev) => setEmail(ev.target.value)}
+                disable
               ></Input>
               <CityHolder>
                 <Input

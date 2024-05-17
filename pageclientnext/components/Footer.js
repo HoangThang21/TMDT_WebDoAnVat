@@ -27,7 +27,11 @@ const StyleNav = styled.nav`
   bottom: 0;
   left: 0;
   right: 0;
+  width: 100%;
   padding: 70px 20px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #222;
   @media screen and (min-width: 768px) {
     display: flex;

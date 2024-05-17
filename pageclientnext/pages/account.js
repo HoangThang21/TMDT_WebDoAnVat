@@ -19,6 +19,18 @@ const ColsWrapper = styled.div`
   gap: 40px;
   margin: 40px 0;
 `;
+const ColsWrapperOrder = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin: 40px 0;
+  table {
+    width: 100%;
+  }
+  tr td {
+    margin-left: 20px;
+  }
+`;
 const CityHolder = styled.div`
   display: flex;
   gap: 5px;
@@ -40,6 +52,7 @@ export default function AccountPage() {
   const [addressLoaded, setAddressLoaded] = useState(false);
   const [wishlistLoaded, setwishlistLoaded] = useState(false);
   const [WishedProduct, setWishedProduct] = useState([]);
+  const [OrderProduct, setOrderProduct] = useState([]);
   async function logout() {
     await signOut({
       callbackUrl: process.env.NEXT_PUBLIC_URL
@@ -60,25 +73,27 @@ export default function AccountPage() {
     }
 
     axios.get("/api/address").then((response) => {
-      console.log(session)
       if (response.data) {
-        setName(response.data.name);
-        setEmail(response.data.email);
         setCity(response.data.city);
         setPostalCode(response.data.postalCode);
         setStreetAddress(response.data.streetAddress);
         setCountry(response.data.country);
-
       }
       setAddressLoaded(true);
     });
     axios.get("/api/wishlist").then((response) => {
       if (response.data) {
         setWishedProduct(response.data.map((wp) => wp.product));
-     
       }
       setwishlistLoaded(true);
     });
+    axios.get("/api/orders?email=" + session.user.email).then((res) => {
+      setOrderProduct(res.data);
+    });
+    if (session) {
+      setName(session.user.name);
+      setEmail(session.user.email);
+    }
   }, [session]);
   function productRemoveFromWishlist(idtoRemove) {
     setWishedProduct((product) => {
@@ -146,14 +161,14 @@ export default function AccountPage() {
                           placeholder="Name"
                           value={name}
                           name="name"
-                          onChange={(ev) => setName(ev.target.value)}
+                          disable
                         ></Input>
                         <Input
                           type="text"
                           placeholder="Email"
                           value={email}
                           name="email"
-                          onChange={(ev) => setEmail(ev.target.value)}
+                          disable
                         ></Input>
                         <CityHolder>
                           <Input
@@ -208,6 +223,76 @@ export default function AccountPage() {
             </RevealWrapper>
           </div>
         </ColsWrapper>
+        <ColsWrapperOrder>
+          <div>
+            <RevealWrapper delay={100}>
+              <WhiteBox>
+                <h2>Chi tiết giỏ hàng</h2>
+                {!addressLoaded && (
+                  <>
+                    <Spinner fullWidth={true}></Spinner>
+                  </>
+                )}
+
+                {session && (
+                  <>
+                    {addressLoaded && (
+                      <>
+                        <table className="basic">
+                          <thead>
+                            <tr>
+                              <th>Ngày</th>
+                              <th>Duyệt</th>
+                              <th>Thông tin</th>
+                              <th>Sản phẩm</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {OrderProduct.length > 0 &&
+                              OrderProduct.map((order, index) => (
+                                <tr key={index}>
+                                  <td>
+                                    {new Date(order.createdAt).toLocaleString()}
+                                  </td>
+                                  <td
+                                    className={
+                                      order.paid
+                                        ? "text-green-600"
+                                        : "text-red-600"
+                                    }
+                                  >
+                                    {order.paid ? "YES" : "NO"}
+                                  </td>
+                                  <td>
+                                    {order.name} {order.email}
+                                    <br />
+                                    {order.city} {order.postalCode}{" "}
+                                    {order.country}
+                                    <br />
+                                    {order.streetAddress}
+                                  </td>
+                                  <td>
+                                    {order.line_items.map((l) => (
+                                      <>
+                                        {l.price_data?.product_data.name} x
+                                        {l.quantity}
+                                        <br />
+                                      </>
+                                    ))}
+                                  </td>
+                                </tr>
+                              ))}
+                          </tbody>
+                        </table>
+                      </>
+                    )}
+                  </>
+                )}
+                {!session && <p>Đăng nhập để xem thông tin giỏ hàng</p>}
+              </WhiteBox>
+            </RevealWrapper>
+          </div>
+        </ColsWrapperOrder>
       </Center>
       <Footer></Footer>
     </>
