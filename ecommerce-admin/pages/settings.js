@@ -1,43 +1,44 @@
 import Layout from "@/components/Layout";
-import Spinner from "@/components/Spinner";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import Spinner from "@/components/Spinner";
 import { withSwal } from "react-sweetalert2";
 
- function SettingsPage({swal}) {
+function SettingsPage({ swal }) {
   const [products, setProducts] = useState([]);
-  const [featuredProductId, setFeaturedProductId] = useState('');
-  const [productsLoading, setProductsLoading] = useState(false);
-  const [featuredLoading, setFeaturedLoading] = useState(false)
-
+  const [featuredProductId, setFeaturedProductId] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [shippingFee, setShippingFee] = useState("");
 
   useEffect(() => {
-    setProductsLoading(true);
-    axios.get("/api/products").then((res) => {
-      setProducts(res.data);
-      setProductsLoading(false);
-    });
-
-    setFeaturedLoading(true);
-    axios.get("/api/settings?name=featuredProductId").then(res => {
-      setFeaturedProductId(res.data.value);
-      setFeaturedLoading(false);
+    setIsLoading(true);
+    fetchAll().then(() => {
+      setIsLoading(false);
     });
   }, []);
 
-  async function saveSettings(){
-    await axios.put('/api/settings',{
-      name: 'featuredProductId',
-      value: featuredProductId,
-    }).then(() => {
-      swal.fire({
-        title: 'Settings saved!',
-        icon:'success',
-      });
+  async function fetchAll() {
+    await axios.get("/api/products").then((res) => {
+      if (res.data) {
+        setProducts(res.data);
+      }
+    });
+    await axios.get("/api/settings?name=featuredProductId").then((res) => {
+      if (res.data) {
+        setFeaturedProductId(res.data.value);
+      }
+    });
+    await axios.get("/api/settings?name=shippingFee").then((res) => {
+      if (res.data) {
+        setShippingFee(res.data.value);
+      }
     });
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 0151e38 (Update settings.js)
 
   async function saveSettings() {
     setIsLoading(true);
@@ -51,28 +52,48 @@ import { withSwal } from "react-sweetalert2";
     });
     setIsLoading(false);
     swal.fire({
+<<<<<<< HEAD
       title:'Đã lưu cài đặt',
       icon: 'success'
     });
   }
 
 >>>>>>> parent of 2b71667 (....)
+=======
+      title: "Đã lưu cài đặt",
+      icon: "success"
+    });
+  }
+
+>>>>>>> parent of 0151e38 (Update settings.js)
   return (
     <Layout>
       <h1>Settings</h1>
-      {(productsLoading || featuredLoading) && <Spinner></Spinner>}
-      {(!productsLoading || ! featuredLoading) && (
+      {isLoading && <Spinner />}
+      {!isLoading && (
         <>
           <label>Featured product</label>
-          <select value={featuredProductId} onChange={ev => setFeaturedProductId(ev.target.value)}>
-            {products.length > 0 &&  products.map((product,index) => (
-              <option key={index} value={product._id}>
-                {product.title}
-              </option>
-            ))}
+          <select
+            value={featuredProductId}
+            onChange={(ev) => setFeaturedProductId(ev.target.value)}
+          >
+            {products.length > 0 &&
+              products.map((product) => (
+                <option value={product._id} key={product._id}>
+                  {product.title}
+                </option>
+              ))}
           </select>
+          <label>Shipping price (in usd)</label>
+          <input
+            type="number"
+            value={shippingFee}
+            onChange={(ev) => setShippingFee(ev.target.value)}
+          />
           <div>
-            <button onClick={saveSettings} className="btn-primary">Save settiings</button>
+            <button onClick={saveSettings} className="btn-primary">
+              Save settings
+            </button>
           </div>
         </>
       )}
@@ -80,6 +101,4 @@ import { withSwal } from "react-sweetalert2";
   );
 }
 
-export default withSwal(({swal}) => (
-  <SettingsPage swal={swal} ></SettingsPage>
-));
+export default withSwal(({ swal }) => <SettingsPage swal={swal} />);
