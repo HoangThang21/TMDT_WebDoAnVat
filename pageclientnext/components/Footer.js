@@ -134,7 +134,7 @@ export default function Footer({ t }) {
                     <img src="/dathongbao.png" alt="" />
                   </div>
                 </NavLink>
-                <NavLink href={"#"}>
+                <NavLink href={"/dieukhoan/dieukhoan"}>
                   {" "}
                   <p>Điều khoản dịch vụ</p>
                 </NavLink>
