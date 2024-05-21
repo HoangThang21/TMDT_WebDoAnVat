@@ -59,10 +59,43 @@ const NavLink = styled(Link)`
     padding: 0;
   }
 `;
+const NavWaperIcon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+
+  background-color: #222;
+`;
+const NavLinkIcon = styled(Link)`
+  display: inline-block;
+  color: #aaa;
+  text-decoration: none;
+  min-width: 30px;
+
+  padding: 10px 0;
+
+  img {
+    border-radius: 10px;
+    width: 40px !important;
+    height: 40px !important;
+    object-fit: fill;
+    background-color: #222;
+  }
+
+  p {
+    font-size: 12px;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 0;
+  }
+`;
 const NavDiv = styled.div`
   display: block;
   color: #aaa;
   text-decoration: none;
+
   min-width: 30px;
   padding: 10px 0;
   p {
@@ -72,6 +105,7 @@ const NavDiv = styled.div`
     width: 68px;
     height: 68px;
     object-fit: fill;
+    background: transparent;
   }
   div {
     display: flex;
@@ -116,6 +150,24 @@ export default function Footer({ t }) {
                   nthang_21th@student.agu.edu.vn
                 </p>
                 <p>Zalo: 0355.378.007 - ZaloPage: {t("Company")} TechFood</p>
+                <NavWaperIcon>
+                  <NavLinkIcon href={"https://www.facebook.com/groups/816299567074647"}>
+                    {" "}
+                    <img src="/fa.png" alt="" />{" "}
+                  </NavLinkIcon>
+                  <NavLinkIcon href={"#"}>
+                    {" "}
+                    <img src="/shope.png" alt="" />{" "}
+                  </NavLinkIcon>
+                  <NavLinkIcon href={"https://zalo.me/0364411871"}>
+                    {" "}
+                    <img src="/zalo.png" alt="" />{" "}
+                  </NavLinkIcon>
+                  <NavLinkIcon href={"#"}>
+                    {" "}
+                    <img src="/youtube.png" alt="" />{" "}
+                  </NavLinkIcon>
+                </NavWaperIcon>
               </NavDiv>
               <NavDiv>
                 <div>
