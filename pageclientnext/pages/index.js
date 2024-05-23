@@ -11,6 +11,11 @@ import Footer from "@/components/Footer";
 import { useTranslation } from 'react-i18next';
 import '@/i18n/i18n.js';
 
+export const metadata = {
+  title: 'Giới Thiệu',
+  description: 'Đây là trang giới thiệu về chúng tôi.',
+};
+
 export default function HomePage({
   featuredProduct,
   newProducts,
@@ -19,7 +24,6 @@ export default function HomePage({
   const {t}= useTranslation();
   return (
     <div>
-      
       <Header t={t}></Header>
       <Featured product={featuredProduct}></Featured>
       <NewProduct

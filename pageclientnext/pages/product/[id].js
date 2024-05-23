@@ -36,12 +36,14 @@ const Decoration= styled.span`
     font-weight: 300;
     color: #000000;
 `
-
+import { useTranslation } from "react-i18next";
+import "@/i18n/i18n.js";
 export default function ProductPage({product}){
     const {addProduct} = useContext(CartContext);
+    const { t } = useTranslation();
     return (
         <>
-            <Header></Header>
+            <Header t={t}></Header>
             <Center>
                 <ColWrapper>
                     <WhiteBox>

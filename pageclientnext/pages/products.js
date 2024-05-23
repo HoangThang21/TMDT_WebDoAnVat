@@ -12,6 +12,8 @@ import Footer from "@/components/Footer";
 import { useTranslation } from 'react-i18next';
 import '@/i18n/i18n.js';
 
+
+
 export default function ProductsPage({products,wishedProduct}){
     const {t}= useTranslation();
     return (

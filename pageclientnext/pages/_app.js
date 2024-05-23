@@ -1,8 +1,8 @@
 import { CartContextProvider } from "@/components/CartContext";
 import { SessionProvider } from "next-auth/react";
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle } from "styled-components";
 
-
+import Head from "next/head";
 const GlobalStyles = createGlobalStyle`
 
 
@@ -22,18 +22,38 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-export default function App({ Component, pageProps:{session,...pageProps} }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps }
+}) {
   return (
     <>
-      <GlobalStyles></GlobalStyles>
-      <SessionProvider session={session}>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+ 
+        <meta property="og:title" content="TECHFOOD" />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://www.imdb.com/title/tt0117500/"
+        />
+        <meta
+          property="og:image"
+          content="https://ia.media-imdb.com/images/rock.jpg"
+        />
+        <meta
+          property="og:description"
+          content="Chào mừng bạn đến TEACHFOOD."
+        />
+      </Head>
+      <main>
 
-      <CartContextProvider>
-        <Component {...pageProps} />
-      </CartContextProvider>
-      </SessionProvider>
-      
+        <SessionProvider session={session}>
+          <CartContextProvider>
+            <Component {...pageProps} />
+          </CartContextProvider>
+        </SessionProvider>
+      </main>
     </>
-    
   );
 }
