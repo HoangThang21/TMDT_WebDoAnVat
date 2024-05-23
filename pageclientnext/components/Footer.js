@@ -102,9 +102,9 @@ const NavDiv = styled.div`
     font-size: 12px;
   }
   div > img {
-    width: 68px;
-    height: 68px;
-    object-fit: fill;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
     background: transparent;
   }
   div {
@@ -133,7 +133,7 @@ export default function Footer({ t }) {
             <StyleNav>
               <NavDiv>
                 <div>
-                  <img src="/iconlogoweb.png" alt="" /> <span>TECHFOOD</span>
+                  <img src="https://github.com/HoangThang21/TMDT_WebDoAnVat/blob/main/pageclientnext/public/logoweb.png?raw=true" alt="" /> <span>TECHFOOD</span>
                 </div>
                 <p>Copyright © 2024 TechFood</p>
                 <p>

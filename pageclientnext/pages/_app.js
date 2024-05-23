@@ -39,7 +39,7 @@ export default function App({
         />
         <meta
           property="og:image"
-          content="https://ia.media-imdb.com/images/rock.jpg"
+          content="https://github.com/HoangThang21/TMDT_WebDoAnVat/blob/main/pageclientnext/public/logoweb.png?raw=true"
         />
         <meta
           property="og:description"
@@ -47,7 +47,6 @@ export default function App({
         />
       </Head>
       <main>
-
         <SessionProvider session={session}>
           <CartContextProvider>
             <Component {...pageProps} />
