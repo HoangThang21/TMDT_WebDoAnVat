@@ -30,7 +30,9 @@ export default function App({
     <>
       <Head>
         <link rel="icon" href="/favicon.ico" />
- 
+        <title>Trang Chủ</title>
+        <meta name="description" content="Trang chủ TECHFOOD" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:title" content="TECHFOOD" />
         <meta property="og:type" content="website" />
         <meta
